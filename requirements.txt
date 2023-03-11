@@ -1,0 +1,9 @@
+streamlit
+pandas
+cv2
+numpy
+random
+mediapipe
+av
+tensorflow
+keras
