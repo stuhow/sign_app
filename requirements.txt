@@ -1,6 +1,6 @@
 streamlit
 pandas
-opencv-python-headless
+opencv-python
 numpy
 mediapipe
 av
