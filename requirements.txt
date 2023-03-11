@@ -6,3 +6,4 @@ mediapipe
 av
 tensorflow
 keras
+google-cloud-storage
