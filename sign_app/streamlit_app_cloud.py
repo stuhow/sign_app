@@ -288,7 +288,7 @@ if app_mode == object_detection_page:
 
     #if the selectbox returns a letter different than  " ", main function is called.
     if option != df[0]:
-        img = Image.open(f"{st.secrets('EXAMPLES')}/{option}/{option}.jpg")
+        img = Image.open(f"{st.secrets['EXAMPLES']}/{option}/{option}.jpg")
         st.image(img, caption='Try This!')
         app_sign_language_detection(model, mp_model)
 
