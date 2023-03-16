@@ -108,9 +108,9 @@ def app_sign_language_detection(model, mp_model):
 
 @st.cache_resource
 def load_cloud_model():
-    bucket_name = os.environ.get("BUCKET")
-    model_name = os.environ.get("MODEL_NAME")
-    model_dir = os.environ.get("MODEL_DIR")
+    bucket_name = st.secrets["BUCKET"]
+    model_name = st.secrets["MODEL_NAME"]
+    model_dir = st.secrets["MODEL_DIR"]
 
     # Create a client object for Google Cloud Storage
     client = storage.Client()
