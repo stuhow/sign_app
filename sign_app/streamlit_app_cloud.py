@@ -43,7 +43,6 @@ def app_sign_language_detection(model, mp_model):
 
         def draw_and_predict(self, image):
             prediction_list = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ") + ["del", "space"]
-            debugging_ice_config()
             print(f'initial print after defining function')
             # print(image)
             image = cv2.flip(image, 1)
@@ -98,7 +97,6 @@ def app_sign_language_detection(model, mp_model):
         def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
             # global counter
             # counter += 1
-            debugging_ice_config()
             image = frame.to_ndarray(format='rgb24')
             annotated_image = self.draw_and_predict(image)
             return av.VideoFrame.from_ndarray(annotated_image,format='rgb24')
