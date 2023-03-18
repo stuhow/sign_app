@@ -24,10 +24,10 @@ option = " "
 
 RTC_CONFIGURATION = RTCConfiguration(
     {
-        "iceServers": [{
+        "RTCIceServer": [{
             "urls": ["turn:relay.metered.ca:80"],
             "username": "fde6cbb36d18c153785bf733",
-            "credential": "bEuNDxnIvdtIPPvB"
+            "credential": "bEuNDxnIvdtIPPvB",
             }]
     }
 )
