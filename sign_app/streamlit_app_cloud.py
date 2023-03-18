@@ -109,7 +109,7 @@ def app_sign_language_detection(model, mp_model):
 
     webrtc_ctx = webrtc_streamer(
         key="sign_language",
-        mode=WebRtcMode.SENDONLY,
+        mode=WebRtcMode.SENDRECV,
         rtc_configuration=RTC_CONFIGURATION,
         video_processor_factory=signs,
         media_stream_constraints={"video": True, "audio": False},
