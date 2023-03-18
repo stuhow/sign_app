@@ -23,13 +23,12 @@ config.run_functions_eagerly(True)
 option = " "
 
 RTC_CONFIGURATION = RTCConfiguration(
-    {"iceServers": [
-        {"urls": ["stun:stun.l.google.com:19302"]},
-        {"urls": ["turn:openrelay.metered.ca:80"],
-         "username": "openrelayproject",
-         "credential": "openrelayproject"}
-        ]}
-)
+    {
+        "iceServers": [
+        {"urls": ["stun:stun2.l.google.com:19302"]
+         }]
+    }
+     )
 list_of_predictions = []
 # counter = 0
 def app_sign_language_detection(model, mp_model):
