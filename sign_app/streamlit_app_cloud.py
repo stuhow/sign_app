@@ -103,13 +103,13 @@ def app_sign_language_detection(model, mp_model):
             return av.VideoFrame.from_ndarray(annotated_image,format='rgb24')
 
     webrtc_ctx = webrtc_streamer(
-    key="sign_language",
-    mode=WebRtcMode.SENDRECV,
-    rtc_configuration=RTC_CONFIGURATION,
-    video_processor_factory=signs,
-    media_stream_constraints={"video": True, "audio": False},
-    async_processing=True,
-    )
+        key="sign_language",
+        mode=WebRtcMode.SENDRECV,
+        rtc_configuration=RTC_CONFIGURATION,
+        video_processor_factory=signs,
+        media_stream_constraints={"video": True, "audio": False},
+        async_processing=True,
+        )
 
 
 @st.cache_resource
