@@ -287,7 +287,7 @@ def result(top3,option):
 if app_mode == object_detection_page:
     #model = load_cloud_model()
     #mp_model = load_mediapipe_model()
-    #df = get_select_box_data()
+    df = get_select_box_data()
 
     #asking the user to select a letter to be predicted for comparison.
     option = st.selectbox('Select letter to practice', df)
