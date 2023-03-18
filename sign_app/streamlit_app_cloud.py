@@ -312,5 +312,3 @@ async def send_stun_message():
             print(f"Error sending STUN message: {e}")
         finally:
             transport.close() # Close the UDP transport
-
-    # Start the event loop and run the function
