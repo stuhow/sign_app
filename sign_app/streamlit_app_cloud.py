@@ -26,7 +26,7 @@ option = " "
 RTC_CONFIGURATION = RTCConfiguration(
     {
         "RTCIceServer": [{
-            "urls": ["turn:relay.metered.ca:80"],
+            "urls": ["turn:relay.metered.ca:443?transport=tcp"],
             "username": "fde6cbb36d18c153785bf733",
             "credential": "bEuNDxnIvdtIPPvB",
             }]
@@ -285,8 +285,8 @@ def result(top3,option):
 # pre-loading the model before calling the main function
 
 if app_mode == object_detection_page:
-    #model = load_cloud_model()
-    #mp_model = load_mediapipe_model()
+    model = load_cloud_model()
+    mp_model = load_mediapipe_model()
     df = get_select_box_data()
 
     #asking the user to select a letter to be predicted for comparison.
