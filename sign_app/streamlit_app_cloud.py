@@ -25,11 +25,26 @@ option = " "
 
 RTC_CONFIGURATION = RTCConfiguration(
     {
-        "RTCIceServer": [{
+        "iceServers":
+            [{
             "urls": ["turn:relay.metered.ca:443?transport=tcp"],
             "username": "fde6cbb36d18c153785bf733",
             "credential": "bEuNDxnIvdtIPPvB",
-            }]
+            },
+             {
+            "urls": "stun:relay.metered.ca:80",
+            },
+            {
+            "urls": "turn:relay.metered.ca:80",
+            "username": "fde6cbb36d18c153785bf733",
+            "credential": "bEuNDxnIvdtIPPvB",
+            },
+            {
+            "urls": "turn:relay.metered.ca:443",
+            "username": "fde6cbb36d18c153785bf733",
+            "credential": "bEuNDxnIvdtIPPvB",
+            },
+            ]
     }
 )
 list_of_predictions = []
