@@ -7,5 +7,5 @@ av
 # tensorflow
 keras
 google-cloud-storage
-streamlit-webrtc
+streamlit-webrtc==0.44.6
 google-auth
