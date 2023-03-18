@@ -23,29 +23,9 @@ config.run_functions_eagerly(True)
 option = " "
 
 RTC_CONFIGURATION = RTCConfiguration(
-    {
-        "iceServers":
-            [{
-            "urls": ["turn:relay.metered.ca:443?transport=tcp"],
-            "username": "fde6cbb36d18c153785bf733",
-            "credential": "bEuNDxnIvdtIPPvB",
-            },
-             {
-            "urls": "stun:relay.metered.ca:80",
-            },
-            {
-            "urls": "turn:relay.metered.ca:80",
-            "username": "fde6cbb36d18c153785bf733",
-            "credential": "bEuNDxnIvdtIPPvB",
-            },
-            {
-            "urls": "turn:relay.metered.ca:443",
-            "username": "fde6cbb36d18c153785bf733",
-            "credential": "bEuNDxnIvdtIPPvB",
-            },
-            ]
-    }
+    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
 )
+
 list_of_predictions = []
 # counter = 0
 def app_sign_language_detection(model, mp_model):
