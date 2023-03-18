@@ -24,7 +24,7 @@ config.run_functions_eagerly(True)
 option = " "
 
 RTC_CONFIGURATION = RTCConfiguration(
-    {"RTCIceServer": [{"urls": ["stun:relay.metered.ca:80",
+    {"iceServers": [{"urls": ["stun:relay.metered.ca:80",
                               "turn:relay.metered.ca:80",
                               "turn:relay.metered.ca:443",
                               "turn:relay.metered.ca:443?transport=tcp"],
