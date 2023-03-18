@@ -102,13 +102,14 @@ def app_sign_language_detection(model, mp_model):
         def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
             # global counter
             # counter += 1
+            debugging_ice_config()
             image = frame.to_ndarray(format='rgb24')
             annotated_image = self.draw_and_predict(image)
             return av.VideoFrame.from_ndarray(annotated_image,format='rgb24')
 
     webrtc_ctx = webrtc_streamer(
         key="sign_language",
-        mode=WebRtcMode.SENDRECV,
+        mode=WebRtcMode.SENDONLY,
         rtc_configuration=RTC_CONFIGURATION,
         video_processor_factory=signs,
         media_stream_constraints={"video": True, "audio": False},
