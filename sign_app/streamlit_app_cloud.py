@@ -10,7 +10,6 @@ from google.cloud import storage
 from keras.models import load_model
 from tensorflow import config
 import os
-from google.oauth2 import service_account
 import av
 from PIL import Image
 from streamlit_webrtc import (
@@ -19,6 +18,11 @@ from streamlit_webrtc import (
     WebRtcMode,
     webrtc_streamer,
 )
+
+import asyncio
+import aioice
+
+asyncio.get_event_loop().set_debug(True)
 
 config.run_functions_eagerly(True)
 option = " "
@@ -110,15 +114,12 @@ def app_sign_language_detection(model, mp_model):
 
 @st.cache_resource
 def load_cloud_model():
-    bucket_name = st.secrets["BUCKET"]
-    model_name = st.secrets["MODEL_NAME"]
-    model_dir = st.secrets["MODEL_DIR"]
+    bucket_name = os.environ.get("BUCKET")
+    model_name = os.environ.get("MODEL_NAME")
+    model_dir = os.environ.get("MODEL_DIR")
 
-    credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"]
-)
     # Create a client object for Google Cloud Storage
-    client = storage.Client(credentials=credentials)
+    client = storage.Client()
 
     # Get a bucket object for the bucket
     bucket = client.get_bucket(bucket_name)
@@ -283,10 +284,20 @@ if app_mode == object_detection_page:
     model = load_cloud_model()
     mp_model = load_mediapipe_model()
     df = get_select_box_data()
-    import asyncio
-    import aioice
 
-    async def send_stun_message():
+    #asking the user to select a letter to be predicted for comparison.
+    option = st.selectbox('Select letter to practice', df)
+
+    #if the selectbox returns a letter different than  " ", main function is called.
+    if option != df[0]:
+        img = Image.open(f"{os.environ.get('EXAMPLES')}/{option}/{option}.jpg")
+        st.image(img, caption='Try This!')
+        app_sign_language_detection(model, mp_model)
+
+if app_mode == about_page:
+    about()
+
+async def send_stun_message():
         try:
             # Create a UDP transport and start the event loop
             transport, protocol = await aioice.create_udp_transport()
@@ -301,19 +312,3 @@ if app_mode == object_detection_page:
             print(f"Error sending STUN message: {e}")
         finally:
             transport.close() # Close the UDP transport
-
-    # Start the event loop and run the function
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(send_stun_message())
-
-    #asking the user to select a letter to be predicted for comparison.
-    option = st.selectbox('Select letter to practice', df)
-
-    #if the selectbox returns a letter different than  " ", main function is called.
-    if option != df[0]:
-        img = Image.open(f"{st.secrets['EXAMPLES']}/{option}/{option}.jpg")
-        st.image(img, caption='Try This!')
-        app_sign_language_detection(model, mp_model)
-
-if app_mode == about_page:
-    about()
