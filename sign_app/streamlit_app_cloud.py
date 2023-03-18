@@ -2,9 +2,6 @@ import streamlit as st
 import copy
 import cv2
 import numpy as np
-import asyncio
-import logging
-from aiortc import RTCIceTransport
 import pandas as pd
 from random import randrange
 import mediapipe as mp
@@ -304,19 +301,3 @@ if app_mode == object_detection_page:
 
 if app_mode == about_page:
     about()
-
-async def debugging_ice_config():
-    ice_transport = RTCIceTransport()
-    logger = logging.getLogger("my_logger")
-    while True:
-        try:
-            await ice_transport.send_stun_request()
-        except Exception as exc:
-            if not ice_transport.is_closed:
-                # If the transport is still open, log the exception and retry the request
-                logger.exception("Failed to send STUN request")
-                await asyncio.sleep(0.5)
-                await ice_transport.send_stun_request()
-            else:
-                # If the transport is closed, ignore the exception
-                logger.debug("Failed to send STUN request because transport is closed: %s", exc)
