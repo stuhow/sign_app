@@ -2,6 +2,9 @@ import streamlit as st
 import copy
 import cv2
 import numpy as np
+import asyncio
+import logging
+from aiortc import RTCIceTransport
 import pandas as pd
 from random import randrange
 import mediapipe as mp
@@ -44,6 +47,7 @@ def app_sign_language_detection(model, mp_model):
 
         def draw_and_predict(self, image):
             prediction_list = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ") + ["del", "space"]
+            debugging_ice_config()
             print(f'initial print after defining function')
             # print(image)
             image = cv2.flip(image, 1)
@@ -103,13 +107,13 @@ def app_sign_language_detection(model, mp_model):
             return av.VideoFrame.from_ndarray(annotated_image,format='rgb24')
 
     webrtc_ctx = webrtc_streamer(
-    key="sign_language",
-    mode=WebRtcMode.SENDRECV,
-    rtc_configuration=RTC_CONFIGURATION,
-    video_processor_factory=signs,
-    media_stream_constraints={"video": True, "audio": False},
-    async_processing=True,
-    )
+        key="sign_language",
+        mode=WebRtcMode.SENDRECV,
+        rtc_configuration=RTC_CONFIGURATION,
+        video_processor_factory=signs,
+        media_stream_constraints={"video": True, "audio": False},
+        async_processing=True,
+        )
 
 
 @st.cache_resource
@@ -299,3 +303,19 @@ if app_mode == object_detection_page:
 
 if app_mode == about_page:
     about()
+
+async def debugging_ice_config():
+    ice_transport = RTCIceTransport()
+    logger = logging.getLogger("my_logger")
+    while True:
+        try:
+            await ice_transport.send_stun_request()
+        except Exception as exc:
+            if not ice_transport.is_closed:
+                # If the transport is still open, log the exception and retry the request
+                logger.exception("Failed to send STUN request")
+                await asyncio.sleep(0.5)
+                await ice_transport.send_stun_request()
+            else:
+                # If the transport is closed, ignore the exception
+                logger.debug("Failed to send STUN request because transport is closed: %s", exc)
