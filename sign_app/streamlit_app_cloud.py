@@ -283,6 +283,28 @@ if app_mode == object_detection_page:
     model = load_cloud_model()
     mp_model = load_mediapipe_model()
     df = get_select_box_data()
+    import asyncio
+    import aioice
+
+    async def send_stun_message():
+        try:
+            # Create a UDP transport and start the event loop
+            transport, protocol = await aioice.create_udp_transport()
+            await asyncio.sleep(0.1) # Wait for the transport to be ready
+
+            # Send a STUN message to a remote address
+            request = aioice.create_request()
+            remote_addr = ('stun.l.google.com', 19302)
+            await protocol.send_stun(request, remote_addr)
+
+        except Exception as e:
+            print(f"Error sending STUN message: {e}")
+        finally:
+            transport.close() # Close the UDP transport
+
+    # Start the event loop and run the function
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(send_stun_message())
 
     #asking the user to select a letter to be predicted for comparison.
     option = st.selectbox('Select letter to practice', df)
