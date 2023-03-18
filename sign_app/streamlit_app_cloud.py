@@ -24,14 +24,13 @@ option = " "
 
 RTC_CONFIGURATION = RTCConfiguration(
     {
-        "iceServers": [
-        {"urls": ["stun:stun.xten.com:3478"]},
-        {"urls": ["turn:relay.metered.ca:80"],
-         "username": "fde6cbb36d18c153785bf733",
-         "credential": "bEuNDxnIvdtIPPvB"}
-        ]
+        "iceServers": [{
+            "urls": ["turn:relay.metered.ca:80"],
+            "username": "fde6cbb36d18c153785bf733",
+            "credential": "bEuNDxnIvdtIPPvB"
+            }]
     }
-     )
+)
 list_of_predictions = []
 # counter = 0
 def app_sign_language_detection(model, mp_model):
