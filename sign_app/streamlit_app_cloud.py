@@ -25,7 +25,7 @@ option = " "
 RTC_CONFIGURATION = RTCConfiguration(
     {
         "iceServers": [
-        {"urls": ["stun:stun2.l.google.com:19302"]},
+        {"urls": ["stun:stun.xten.com:3478"]},
         {"urls": ["turn:relay.metered.ca:80"],
          "username": "fde6cbb36d18c153785bf733",
          "credential": "bEuNDxnIvdtIPPvB"}
