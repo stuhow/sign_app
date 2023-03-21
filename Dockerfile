@@ -11,6 +11,5 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
-
 ENTRYPOINT ["streamlit", "run", "sign_app/streamlit_app_cloud.py", "--server.port=8501", "--server.address=0.0.0.0"]
 # CMD streamlit run sign_app/streamlit_app_cloud.py
