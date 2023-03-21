@@ -10,6 +10,7 @@ from tensorflow import device
 from google.cloud import storage
 from keras.models import load_model
 from tensorflow import config
+from google.oauth2 import service_account
 import os
 import av
 from rembg import remove
