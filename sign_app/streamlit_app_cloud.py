@@ -28,9 +28,8 @@ config.run_functions_eagerly(True)
 # if "option" not in st.session_state:
 # 	st.session_state.option = "A"
 
-RTC_CONFIGURATION = RTCConfiguration(
-    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-)
+RTC_CONFIGURATION = RTCConfiguration(here)
+
 list_of_predictions = []
 # counter = 0
 test_prob = None
