@@ -164,8 +164,8 @@ def load_cloud_model():
     model_dir = st.secrets["MODEL_DIR"]
 
     credentials = service_account.Credentials.from_service_account_info(
-        st.secrets["gcp_service_account"]
-    )
+    st.secrets["gcp_service_account"]
+)
     # Create a client object for Google Cloud Storage
     client = storage.Client(credentials=credentials)
 
@@ -181,7 +181,6 @@ def load_cloud_model():
     model = load_model(model_dir + model_name)
 
     return model
-
 
 @st.cache_resource
 def load_mediapipe_model():
