@@ -159,10 +159,13 @@ def app_sign_language_detection(_model, _mp_model, _option):
 
 @st.cache_resource
 def load_cloud_model():
-    bucket_name = os.environ.get("BUCKET")
-    model_name = os.environ.get("MODEL_NAME")
-    model_dir = os.environ.get("MODEL_DIR")
+    bucket_name = st.secrets["BUCKET"]
+    model_name = st.secrets["MODEL_NAME"]
+    model_dir = st.secrets["MODEL_DIR"]
 
+    credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+        
     # Create a client object for Google Cloud Storage
     client = storage.Client()
 
@@ -397,7 +400,7 @@ def obj_detection():
         opt_holder = app_sign_language_detection(model, mp_model,option)
         if st.button("Get a hint!"):
             info = st.info(f"This is the shape of  {option}")
-            img = Image.open(f"{os.environ.get('EXAMPLES')}/{option}/{option}.jpg")
+            img = Image.open(f"{st.secrets['EXAMPLES']}/{option}/{option}.jpg")
             img = remove(img)
             place_holder = grid(img)
             time.sleep(5)
