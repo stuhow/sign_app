@@ -163,8 +163,7 @@ def load_cloud_model():
     model_name = st.secrets["MODEL_NAME"]
     model_dir = st.secrets["MODEL_DIR"]
 
-    credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"])
+    credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
     # Create a client object for Google Cloud Storage
     client = storage.Client(credentials=credentials)
 
