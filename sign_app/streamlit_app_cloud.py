@@ -27,7 +27,7 @@ config.run_functions_eagerly(True)
 option = " "
 
 user = st.secrets["USER"]
-cred = st.secrets["CRED"]
+cred = st.secrets["CREDENTIAL"]
 
 RTC_CONFIGURATION = RTCConfiguration(
     {"iceServers":[{"urls": ["stun:eu-turn5.xirsys.com"]},
