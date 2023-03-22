@@ -30,15 +30,15 @@ user = st.secrets["USER"]
 cred = st.secrets["CREDENTIAL"]
 
 RTC_CONFIGURATION = RTCConfiguration(
-    {"iceServers":[{"urls": ["stun:eu-turn5.xirsys.com"]},
+    {"iceServers":[{"urls": ["stun:eu-turn6.xirsys.com"]},
                {"username": user,
                 "credential": cred,
-                "urls": ["turn:eu-turn5.xirsys.com:80?transport=udp",
-                         "turn:eu-turn5.xirsys.com:3478?transport=udp",
-                         "turn:eu-turn5.xirsys.com:80?transport=tcp",
-                         "turn:eu-turn5.xirsys.com:3478?transport=tcp",
-                         "turns:eu-turn5.xirsys.com:443?transport=tcp",
-                         "turns:eu-turn5.xirsys.com:5349?transport=tcp"]}]}
+                "urls": ["turn:eu-turn6.xirsys.com:80?transport=udp",
+                         "turn:eu-turn6.xirsys.com:3478?transport=udp",
+                         "turn:eu-turn6.xirsys.com:80?transport=tcp",
+                         "turn:eu-turn6.xirsys.com:3478?transport=tcp",
+                         "turns:eu-turn6.xirsys.com:443?transport=tcp",
+                         "turns:eu-turn6.xirsys.com:5349?transport=tcp"]}]}
 )
 
 # ss = st.session_state.get(option='A')
