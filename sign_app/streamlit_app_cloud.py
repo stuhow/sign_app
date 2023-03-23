@@ -397,12 +397,35 @@ def obj_detection():
                         info.empty()
 
 
+import base64
+
+def add_background(image_path):
+    with open(image_path, "rb") as f:
+        image = f.read()
+    b64_image = base64.b64encode(image).decode("utf-8")
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url('data:image/png;base64,{b64_image}');
+            background-attachment: fixed;
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 # pre-loading the model before calling the main function
 
+
 if app_mode == object_detection_page:
+    add_background("background/backgroundimage.png")
     about_sign_lingo()
     obj_detection()
 
+
 if app_mode == about_page:
+    add_background("background/backgroundimage.png")
+    add_background()
     about()
