@@ -114,16 +114,7 @@ def app_sign_language_detection(_model, _mp_model, _option):
             #     return debug_image
 
             try:
-                # if cropped_image.shape == (1, 56, 56, 3):
-                #     print('entered if shape statement')
-                #     predict = self.model.predict(cropped_image)[0]
-                #     global list_of_predictions
-                #     list_of_predictions.append(predict)
-                #     if len(list_of_predictions) > 5:
-                #         del list_of_predictions[0]
-                #     predict_mean = np.mean(np.array(list_of_predictions), axis = 0)
-                #     top3 = np.argsort(predict_mean)[-3:]
-                #     top3 = list(reversed(top3))
+
                 top3,predict_mean = self.get_predict(cropped_image)
                 global test_prob
                 test_prob = top3[0]
@@ -307,7 +298,7 @@ st.set_page_config(
 
 
             # page_icon="🐍",
-            layout="centered", # wide
+            layout="wide", # wide
             initial_sidebar_state="auto")
 
 
@@ -356,23 +347,13 @@ def grid(img):
     return place_holder
 
 
-# grid to place the example image in the middle
-def grid(img):
-
-    col1,col2,col3 = st.columns(3)
-
-    with col2:
-        place_holder = st.image(img)
-    return place_holder
-
-
 def about_sign_lingo():
     st.markdown('**Welcome to **SignLingo**, the Sign Language training app**')
     st.markdown("""
                 This is a real-time experience when practicing sign language,
                 follow the steps below and try!""")
 
-    if st.button("Instructions"):
+    if st.button("Instructions",key=1):
         mkdown_holder = st.markdown("""
                     - First select which sign within the available ones you want to try.
                     - If you have no clue on the shape, click on the Get a hint button, that will give you an example of the sign.
@@ -380,42 +361,48 @@ def about_sign_lingo():
                     - When ready, click on the start button.
                     - As soon as the camera opens, put your hand in a position where our system detects it, and try the sign you chose!
                     - Pay atention to the feedback answer on the bottom of the camera screen:
-                        - If you make it correctly, you should see a green statement giving you the accuracy of your sign!
+                        - If you make it correctly, you will see a green statement giving you the accuracy of your sign!
                         - If not, a red one will appear telling you which sign our system is detecting and which one you should aim to do.
                     - Finally, whenever you want to try a new one, just select it from the dropdown menu.
-
                     """)
-        if st.button("Close"):
+        if st.button("Close",key=2):
             mkdown_holder.empty()
 
 
 def obj_detection():
 
-    about_sign_lingo()
+    col1,col2 = st.columns(2)
     df = get_select_box_data()
     opt_holder = " "
-
+    place_holder = st.empty()
     #asking the user to select a letter to be predicted for comparison.
-    option = st.selectbox('**Select a Sign to practice**', df)
+    option = col1.selectbox('**Select a Sign to practice**', df)
 
     #if the selectbox returns a letter different than  " ", main function is called.
     if option != opt_holder:
-        opt_holder = app_sign_language_detection(model, mp_model,option)
-        if st.button("Get a hint!"):
-            info = st.info(f"This is the shape of  {option}")
-            img = Image.open(f"{st.secrets['EXAMPLES']}/{option}/{option}.jpg")
-            img = remove(img)
-            place_holder = grid(img)
-            time.sleep(5)
-            place_holder.empty()
-            info.empty()
+        with col1:
+            opt_holder = app_sign_language_detection(model, mp_model,option)
+
+            # if st.button("Get a hint!",key=3):
+            if option != " ":
+                with col2:
+                    info = st.info(f"This is the shape of  {option}")
+                    img = Image.open(f"{os.environ.get('EXAMPLES')}/{option}/{option}.jpg")
+                    img = remove(img)
+                    place_holder = grid(img)
+                with col1:
+                    if st.button("Close hint!",key=4):
+                    # time.sleep(5)
+                        place_holder.empty()
+                        info.empty()
+
 
 
 # pre-loading the model before calling the main function
 
 if app_mode == object_detection_page:
+    about_sign_lingo()
     obj_detection()
-
 
 if app_mode == about_page:
     about()
