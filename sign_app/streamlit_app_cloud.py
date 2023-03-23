@@ -387,7 +387,7 @@ def obj_detection():
             if option != " ":
                 with col2:
                     info = st.info(f"This is the shape of  {option}")
-                    img = Image.open(f"{os.environ.get('EXAMPLES')}/{option}/{option}.jpg")
+                    img = Image.open(f"{st.secrets['EXAMPLES']}/{option}/{option}.jpg")
                     img = remove(img)
                     place_holder = grid(img)
                 with col1:
