@@ -427,5 +427,4 @@ if app_mode == object_detection_page:
 
 if app_mode == about_page:
     add_background("sign_app/background/backgroundimage.png")
-    add_background()
     about()
