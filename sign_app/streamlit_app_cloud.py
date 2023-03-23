@@ -420,12 +420,12 @@ def add_background(image_path):
 
 
 if app_mode == object_detection_page:
-    add_background("background/backgroundimage.png")
+    add_background("sign_app/background/backgroundimage.png")
     about_sign_lingo()
     obj_detection()
 
 
 if app_mode == about_page:
-    add_background("background/backgroundimage.png")
+    add_background("sign_app/background/backgroundimage.png")
     add_background()
     about()
