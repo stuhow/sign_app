@@ -355,11 +355,11 @@ def about_sign_lingo():
 
     if st.button("Instructions",key=1):
         mkdown_holder = st.markdown("""
-                    :white[- First select which sign within the available ones you want to try.]
-                    :white[- If you have no clue on the shape, click on the Get a hint button, that will give you an example of the sign.]
-                    :white[- The example image is only available for 5 seconds, so if you need more time just click once more.]
-                    :white[- When ready, click on the start button.]
-                    :white[- As soon as the camera opens, put your hand in a position where our system detects it, and try the sign you chose!]
+                   -  :white[First select which sign within the available ones you want to try].
+                    - :white[If you have no clue on the shape, click on the Get a hint button, that will give you an example of the sign].
+                    - :white[The example image is only available for 5 seconds, so if you need more time just click once more].
+                   -  :white[When ready, click on the start button].
+                    - :white[As soon as the camera opens, put your hand in a position where our system detects it, and try the sign you chose!]
                     :white[- Pay atention to the feedback answer on the bottom of the camera screen:]
                         :white[- If you make it correctly, you will see a green statement giving you the accuracy of your sign!]
                         :white[- If not, a red one will appear telling you which sign our system is detecting and which one you should aim to do.]
