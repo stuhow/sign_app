@@ -295,12 +295,9 @@ def print_prob(predict, letters, debug_image,option):
 
 st.set_page_config(
             page_title="SignIntell",
-
-
-            # page_icon="🐍",
+            page_icon="👌",
             layout="wide", # wide
             initial_sidebar_state="collapsed")
-
 
 # Upload models to the page, first thing when opening!
 model = load_cloud_model()
