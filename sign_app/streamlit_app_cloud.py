@@ -22,8 +22,6 @@ from streamlit_webrtc import (
     webrtc_streamer,
 )
 
-st.set_theme("dark")
-
 config.run_functions_eagerly(True)
 
 option = " "
