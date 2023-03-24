@@ -354,7 +354,7 @@ def about_sign_lingo():
                 follow the steps below and try!""")
 
     if st.button("Instructions",key=1):
-        mkdown_holder = st.markdown("""
+        mkdown_holder = st.markdown("""white:[
                     - First select which sign within the available ones you want to try.
                     - If you have no clue on the shape, click on the Get a hint button, that will give you an example of the sign.
                     - The example image is only available for 5 seconds, so if you need more time just click once more.
@@ -363,7 +363,7 @@ def about_sign_lingo():
                     - Pay atention to the feedback answer on the bottom of the camera screen:
                         - If you make it correctly, you will see a green statement giving you the accuracy of your sign!
                         - If not, a red one will appear telling you which sign our system is detecting and which one you should aim to do.
-                    - Finally, whenever you want to try a new one, just select it from the dropdown menu.
+                    - Finally, whenever you want to try a new one, just select it from the dropdown menu.]
                     """)
         if st.button("Close",key=2):
             mkdown_holder.empty()
