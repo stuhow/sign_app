@@ -355,7 +355,7 @@ def about_sign_lingo():
 
     if st.button("Instructions",key=1):
         mkdown_holder = st.markdown("""
-                    white:[- First select which sign within the available ones you want to try.]
+                    :white[- First select which sign within the available ones you want to try.]
                     - If you have no clue on the shape, click on the Get a hint button, that will give you an example of the sign.
                     - The example image is only available for 5 seconds, so if you need more time just click once more.
                     - When ready, click on the start button.
