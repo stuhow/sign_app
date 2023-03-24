@@ -306,9 +306,7 @@ def print_prob(predict, letters, debug_image,option):
 
 st.set_page_config(
             page_title="SignIntell",
-
-
-            # page_icon="🐍",
+            page_icon="👌",
             layout="centered", # wide
             initial_sidebar_state="auto")
 
