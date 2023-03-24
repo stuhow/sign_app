@@ -299,7 +299,7 @@ st.set_page_config(
 
             # page_icon="🐍",
             layout="wide", # wide
-            initial_sidebar_state="auto")
+            initial_sidebar_state="collapsed")
 
 
 # Upload models to the page, first thing when opening!
