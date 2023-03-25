@@ -294,7 +294,7 @@ def print_prob(predict, letters, debug_image,option):
 
 
 st.set_page_config(
-            page_title="SignIntell",
+            page_title="SignLingo | Learn Sign Language with AI",
             page_icon="👌",
             layout="wide", # wide
             initial_sidebar_state="collapsed")
@@ -314,7 +314,7 @@ def about():
     - Our system will detect the hand sign being made and evaluate accordingly.""")
 
 object_detection_page = "SignLingo"
-about_page = "About SignIntell"
+about_page = "About SignLingo"
 
 app_mode = st.sidebar.selectbox(
     "Choose the app mode",
